@@ -1,0 +1,34 @@
+Name     Raj ;
+PartNo   00 ;
+Date     3/01/2018 ;
+Revision 01 ;
+Designer Engineer ;
+Company  University of Colorado Boulder ;
+Assembly None ;
+Location  ;
+Device   g16v8a ;
+
+/* *************** INPUT PINS *********************/
+PIN 5	  = A12; /*address pins*/
+PIN 4	  = A13; /*address pins*/
+PIN 3	  = A14;  /*address pins*/
+PIN 2    = A15; /*address pins*/
+PIN 7    = RD;  /*read pin */
+PIN 8 	  = WR;  /*write pin */
+
+
+/* *************** OUTPUT PINS *********************/
+Pin 15	  = Rs; /* Register select Pin */
+Pin 14	  = RW; /* read write pin */
+Pin 13	  = E;  /*Enable pin */
+
+/* logic for four conditions of RS and RW with addresses, 
+TA's Help taken in figuring out the logic */
+
+RW = (A15 & !A14) & ((A13  & A12)#(!A13 & A12));
+Rs = (A15 & !A14 & A13 $ A12);
+
+/* Enable Pin Logic */
+
+E = (!RD # !WR)&(A15 & !A14 ); 
+

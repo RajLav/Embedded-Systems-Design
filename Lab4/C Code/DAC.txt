@@ -1,0 +1,97 @@
+/* Name :- Raj lavingia
+ESD LAb 4 Supplemental element
+*/
+
+#include <at89c51ed2.h>  //also includes 8052.h and 8051.h
+#include <mcs51/8051.h> //8051
+#include <stdlib.h> //standard library
+#include <stdio.h> //standard input output
+#include <string.h> //string
+#include<stdint.h>
+#include <math.h>
+
+
+#define CS P1_5
+#define SCK P1_6
+#define SDI P1_7
+
+
+void SPI_out(unsigned char);
+
+unsigned char x=0xFFFF,i;
+void putchar (char c)
+{
+    while (TI == 0); // wait for TX ready, spin on TI
+    SBUF = c;  	// load serial port with transmit value
+   	TI = 0;  	// clear TI flag
+}
+
+void init_hardware()
+{
+    TMOD=0x20; //use Timer 1, mode 2
+    TH1= 0xFD ; // 9600 baud rate
+    SCON=0x50; //SCON initialisation
+    TR1=1;   //Start the Timer
+    TI=1; //Set TI flag to 1
+}
+void SPI_out(unsigned char Data_val)
+
+{
+
+for(i=0;i<8;i++)
+
+{
+
+SDI=(Data_val & x)?1:0;
+
+SCK=1;
+
+Data_val=Data_val<<1;
+
+SCK=0;
+
+}
+
+}
+
+void main()
+
+{
+
+uint16_t Data = 0x7FFF;
+unsigned char data1;
+printf_tiny(" %x /n /r ", Data);
+SCK = 0;
+while(1)
+
+{
+
+CS=0;
+
+Data--;
+
+
+data1=(Data>>8);
+printf_tiny("Raj");
+
+SPI_out(Data);
+printf_tiny("Rajlavingia");
+
+data1=Data;
+printf_tiny(" %x" , data1)
+SPI_out(data1);
+printf_tiny(" %u ", data1);
+
+CS=1;
+
+if (Data == 0)
+{
+
+   Data = 0x37FF;
+
+
+}
+
+}
+
+}
