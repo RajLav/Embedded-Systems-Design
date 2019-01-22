@@ -1,0 +1,168 @@
+*/ Name :- Raj Lavingia
+LAB 3 - SUPPLEMENT ELEMENT 
+DATE :- 03/16/18
+
+*/
+
+
+
+#include <stdio.h>
+#include <at89c51ed2.h>
+#include <string.h> // characters
+#include <stdio.h> // i/p and o/p functions
+#include <stdlib.h> // standard libraries
+#include <mcs51reg.h> //supports more than 20 microcontrollers
+
+__sfr __at (0x8F) CKCON0; // CLOCK CONTROL REGISTER  FOR X2 MODE
+char command;
+char *size;
+void reset1();
+void delay();
+void timer0(void) interrupt 1 using 1
+{
+
+PCON = 0x80; //interupt enable
+delay();
+}
+
+void init_hardware()
+{
+    TMOD=0x20; //use Timer 1, mode 2
+    TH1= 0xFD ; // 9600 baud rate
+    SCON=0x50; //SCON initialisation
+    TR1=1;   //Start the Timer
+    TI=1; //Set TI flag to 1
+}
+//get character from rs232
+char getchar ()
+{
+    while (RI == 0); // wait for character to be received, spin on RI
+	RI = 0;			// clear RI flag
+	return SBUF;  	// return character from SBUF
+}
+
+// for rs232 printing
+void putchar (char c)
+{
+    while (TI == 0); // wait for TX ready, spin on TI
+    SBUF = c;  	// load serial port with transmit value
+   	TI = 0;  	// clear TI flag
+}
+
+
+void delay() //delay for a specific time
+{
+unsigned int i;
+for(i = 0; i < 1000; i++);
+}
+
+void reset1() //given for watchdog timer
+{
+EA = 0;
+CCAP4L = 0;
+CCAP4H = 0xD;
+EA = 1;
+}
+void main()
+{
+init_hardware();  // initialise hardware
+
+while(1)
+
+{
+CKCON0 = 0x01; // FOR X2 MODE
+printf_tiny (" enter characters from the choice \n \r a=watchdog on \n \r z=watchdog off \n \r d= HSO \n \r b=duty cycle \n \r c= duty cycle off \n \r i=idle mode \n \r j=power off mode \n \r g= minimum frequency of CKRL \n \r h =maximum frequency of CKRL \n \r");
+printf_tiny("Enter a character \n \r ");
+command = getchar(); //obtain the character from user
+printf_tiny("The character you entered is :  \n \r ");
+putchar(command);
+if(command == 'a')
+{
+printf_tiny ("watchdog mode \n \r");
+CCAP4L = 0xFF; //ONLY MODULE 4 CAN WORK FOR WATCHDOG TIMER
+CCAP4H = 0xFF;
+CCAPM4 = 0x4C; //ENABLES COMPARATOR AND MATCH PIN
+CMOD = CMOD | 0x40; // FOR TURNING ON WATCHDOG
+while(1)
+{
+        reset1();
+        delay();
+        delay();
+}
+}
+
+else if (command == 'z') //watch dog is off
+{
+    printf_tiny ("watchdog is off \n \r");
+    CMOD &= 0xBF;
+
+}
+
+
+else if (command == 'd')
+{
+printf_tiny ("HSO mode \n \r");
+CMOD = 0x02; // Setup PCA Timer
+CL = 0x00;
+CH = 0x00;
+CCAP0L = 0xFF; // Set Event trigger values
+CCAP0H = 0xFF;
+CCAPM0 = 0x4D; // Set PCA module 0 for HSO mode
+IE = 0xC0;
+CCON = 0x40; // Start PCA timer.
+while(1)
+{}
+}
+else if(command == 'b')
+{
+printf_tiny (" Duty Cycle \n \r");
+CMOD = 0x02; // Setup PCA timer
+CL = 0x00;
+CH = 0x00;
+CCAP0L = 0x8D; //for 45% duty cycle
+CCAP0H = 0x8D; // for 45 % duty cycle ( 256(1-Duty cycle ))
+CCAPM0 = 0x42; // Setup PCA module 0 in PWM mode.
+//CR = 1; // Start PCA Timer.
+
+CCON = 0x40;
+}
+else if (command == 'c')
+{
+     printf_tiny ("Reset Duty Cycle \n \r");
+    CCAPM0 = 0x40; //resetting duty cycle
+}
+else if (command == 'i')
+{
+     printf_tiny (" idle mode & coming out of it \n \r");
+     IEN0 = 0x81; //when interupt comes comes out of idle mode
+    PCON = 0x01; // goes into idle mode
+
+
+
+}
+else if (command == 'j')
+{
+ printf_tiny ("power down mode \n \r");
+    PCON = 0x02; // power down mode
+}
+else if (command == 'g')
+{
+     printf_tiny ("minimum frequency \n \r");
+    CKRL = 0x00; //CKRL minimum frequency
+
+}
+else if (command == 'h')
+{
+     printf_tiny ("maximum frequency \n \r");
+    CKRL = 0xFF; //CKRL maximum frequency
+
+}
+
+
+
+
+
+}
+
+
+}

@@ -1,0 +1,30 @@
+Name     Raj ;
+PartNo   00 ;
+Date 	  01-31-2018   ;
+Revision 01 ;
+Designer Engineer ;
+Company  University of Colorado Boulder ;
+Assembly None ;
+Location  ;
+Device   g16v8a ;
+
+/* *************** INPUT PINS *********************/
+PIN 2    = A12                        ; /*Input 1*/ 
+PIN 3    = A13                        ; /*Input 2*/ 
+PIN 5    = A14                        ; /*Input 3*/ 
+PIN 8    = A15                        ; /*Input 4*/ 
+PIN 7    = RD                         ; /*Input 5*/ 
+PIN 12   = A11                        ; /*Input 6*/ 
+PIN 4    = WR;
+PIN 9	  = A10;
+/* *************** OUTPUT PINS *********************/                
+PIN 15 = CE	;			/* /CSEPROM chip-selects the EPROM (NV-SRAM) */
+PIN 19 = OE;				/* Output enable pin */
+PIN 14= WE;				/* write enable pin */
+
+
+/***************LOGIC*************/
+
+CE = !(!(A15)&(A14 # A13 # A12 # A11 # A10));  /* a14 to a10 are used to get address from 400, a15 is used to limit address till 7FFF */
+OE = RD ;  /* oe not connected to 0 because if connected data can be easily obtained from external source since oe will always be high */
+WE = WR ; /* write enable is connected to write of 8051 to write data */
