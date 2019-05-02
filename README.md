@@ -1,10 +1,10 @@
 # Embedded-Systems-Design
 Spring-18
-Professor : Linden McClure
+Professor : Professor Linden McClure
 
 This subject emphasizes on 8051 MicroController and MSP432.
 
-It teaches basic concepts of I2C, SPI communication. 
+It teaches basic concepts of I2C, SPI and UART communication. 
 
 There are labs which comprises of buffer creation , adding memory to the buffer, deleting memory from buffer and also teaches the concept of DMA.
 
