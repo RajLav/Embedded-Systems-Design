@@ -11,6 +11,7 @@ If the person is new, he can register his card by filling a few details. Once th
 RTC is linked by making an I2C communication between a micro controller and the RTC. This will send real time information of the amount of gas filled and the money deducted from his bank account on his mobile phone. You can also set the time of RTC by using specific buttons on the development board.
 A person can get full data of his transactions in a memory card which was interfaced using SPI communication. This memory card can be inserted into a mobile phone or a laptop and the person can view full details of his transactions in the form of an excel sheet.
 
+This can be used as an Attendance System also (See Project Report). Also Check Software Flow Chart mentioned in the report for better understanding.
 
 Concepts Learned : I2C, SPI, UART Communication Methods
                    Interfacing External Memory
