@@ -1,6 +1,6 @@
 # Embedded-Systems-Design
 Spring-18
-Professor : Professor Linden McClure
+Professor : Linden McClure
 
 This subject emphasizes on 8051 MicroController and MSP432.
 
