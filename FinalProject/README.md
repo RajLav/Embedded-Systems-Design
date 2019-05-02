@@ -17,4 +17,13 @@ Concepts Learned : I2C, SPI, UART Communication Methods
                    Circular Buffer, Data in & Out of Buffer
                    LCD Interfacing
                    
+Hardware Used : RFID Module, RFID Tags, RTC Module, LCD 16x2, GSM module, Mobile Phone, 8051 Development Board(Prepared in Class)
+
+Software Used : SDCC compiler
+
+Language Used : C language
+
+Credits : Professor Linden McClure
+
+
 
