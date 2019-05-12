@@ -1,8 +1,8 @@
-**Project : Automated Gas Station using 8051 Micro Controller
-#Author : Raj Lavingia
-#Date : 30th April 2018**
+**Project : Automated Gas Station using 8051 Micro Controller  
+#Author : Raj Lavingia  
+#Date : 30th April 2018**  
 
-**Problem Noticed :**
+**Problem Noticed :**  
 
 In third world countries, due to lack of technology minimum 10-15 people are hired at every gas station to fill the gas and take the money from the customer
 In order to avoid this problem and make a system much more automated I created this project.
