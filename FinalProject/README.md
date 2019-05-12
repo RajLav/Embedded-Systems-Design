@@ -1,4 +1,4 @@
-**#Project :- Automated Gas Station using 8051 Micro Controller
+**Project : Automated Gas Station using 8051 Micro Controller
 #Author : Raj Lavingia
 #Date : 30th April 2018**
 
