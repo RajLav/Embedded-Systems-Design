@@ -1,8 +1,9 @@
-Project :- Automated Gas Station using 8051 Micro Controller
-Author : Raj Lavingia
-Date : 30th April 2018
+**#Project :- Automated Gas Station using 8051 Micro Controller
+#Author : Raj Lavingia
+#Date : 30th April 2018**
 
-Problem Noticed :-
+**Problem Noticed :**
+
 In third world countries, due to lack of technology minimum 10-15 people are hired at every gas station to fill the gas and take the money from the customer
 In order to avoid this problem and make a system much more automated I created this project.
 
@@ -13,18 +14,20 @@ A person can get full data of his transactions in a memory card which was interf
 
 This can be used as an Attendance System also (See Project Report). Also Check Software Flow Chart mentioned in the report for better understanding.
 
-Concepts Learned : I2C, SPI, UART Communication Methods
-                   Interfacing External Memory
-                   Circular Buffer, Data in & Out of Buffer
-                   LCD Interfacing
+**Concepts Learned :**
+I2C, SPI, UART Communication Methods
+Interfacing External Memory
+Circular Buffer, Data in & Out of Buffer
+LCD Interfacing
                    
-Hardware Used : RFID Module, RFID Tags, RTC Module, LCD 16x2, GSM module, Mobile Phone, 8051 Development Board(Prepared in Class)
+**Hardware Used :**
+RFID Module, RFID Tags, RTC Module, LCD 16x2, GSM module, Mobile Phone, 8051 Development Board(Prepared in Class)
 
-Software Used : SDCC compiler
+**Software Used :** SDCC compiler
 
-Language Used : C language
+**Language Used :** C language
 
-Credits : Professor Linden McClure
+
 
 
 
